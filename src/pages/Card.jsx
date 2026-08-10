@@ -1,6 +1,47 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Card({ restaurante }) {
+  const [favorito, setFavorito] = useState(false);
+
+  useEffect(() => {
+    const favoritos =
+      JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    const existe = favoritos.some(
+      (item) => item.id === restaurante.id
+    );
+
+    setFavorito(existe);
+  }, [restaurante.id]);
+
+  function alternarFavorito() {
+    let favoritos =
+      JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    if (favorito) {
+      // Remove dos favoritos
+      favoritos = favoritos.filter(
+        (item) => item.id !== restaurante.id
+      );
+
+      alert("Restaurante removido dos favoritos!");
+      setFavorito(false);
+
+    } else {
+      // Adiciona aos favoritos
+      favoritos.push(restaurante);
+
+      alert("Restaurante adicionado aos favoritos!");
+      setFavorito(true);
+    }
+
+    localStorage.setItem(
+      "favoritos",
+      JSON.stringify(favoritos)
+    );
+  }
+
   return (
     <div className="col-md-4 mb-4">
 
@@ -16,18 +57,39 @@ function Card({ restaurante }) {
 
           <h5>{restaurante.nome}</h5>
 
-          <p>{restaurante.cidade}</p>
+          <p>
+            <strong>Cidade:</strong> {restaurante.cidade}
+          </p>
 
-          <p>{restaurante.categoria}</p>
+          <p>
+            <strong>Categoria:</strong> {restaurante.categoria}
+          </p>
 
           <p>⭐ {restaurante.avaliacao}</p>
 
-          <Link
-            to={`/estabelecimento/${restaurante.id}`}
-            className="btn btn-success"
-          >
-            Ver Detalhes
-          </Link>
+          <div className="d-flex justify-content-between mt-3">
+
+            <Link
+              to={`/estabelecimento/${restaurante.id}`}
+              className="btn btn-success"
+            >
+              Ver Detalhes
+            </Link>
+
+            <button
+              className={
+                favorito
+                  ? "btn btn-danger"
+                  : "btn btn-warning"
+              }
+              onClick={alternarFavorito}
+            >
+              {favorito
+                ? "💔 Remover"
+                : "❤️ Favoritar"}
+            </button>
+
+          </div>
 
         </div>
 

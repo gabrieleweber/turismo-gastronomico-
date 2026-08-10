@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+
 function Navbar() {
   const usuario = localStorage.getItem("usuario");
 
@@ -35,11 +36,16 @@ function Navbar() {
         </li>
 
         {usuario && (
-          <li className="nav-item">
-            <button onClick={logout} className="btn btn-danger btn-sm">
-              Sair
-            </button>
-          </li>
+          <>
+            <li className="nav-item">
+              <button onClick={logout} className="btn btn-danger btn-sm">
+                Sair
+              </button>
+            </li>
+            <li className="nav-item">
+              <Link to="/admin">Admin</Link>
+            </li>
+          </>
         )}
       </ul>
     </nav>
