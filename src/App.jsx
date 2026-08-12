@@ -21,6 +21,7 @@ function App() {
         <Route path="/estabelecimento/:id" element={<Detalhes />}/>
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
 
+        {/* COMENTÁRIO: Sem uma rota curinga, URLs desconhecidas exibem a barra de navegação sem conteúdo, essa seria a pagina 404 not found. */}
       </Routes>
     </BrowserRouter>
   );

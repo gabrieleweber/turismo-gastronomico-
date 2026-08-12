@@ -153,6 +153,7 @@ function Admin() {
         </div>
 
         <div className="mb-3">
+          {/* COMENTÁRIO: O atributo required apenas verifica a presença; as avaliações e URLs de imagem ainda aceitam valores inválidos, normalmente se usam muitas validações em todos os campos. */}
           <input
             className="form-control"
             placeholder="Avaliação"

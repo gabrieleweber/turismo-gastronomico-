@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// COMENTÁRIO: Este componente duplicado de itens relacionados parece não ser usado, tenta apagar os arquivos não usados em geral.
 function ItensRelacionados({ relacionados }) {
   return (
     <div className="mt-5">
