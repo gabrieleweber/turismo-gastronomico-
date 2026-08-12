@@ -22,6 +22,7 @@ function Login() {
         })
       );
 
+      // COMENTÁRIO: Gravar a autenticação apenas no localStorage não notifica o Navbar durante essa transição em uma SPA; normalmente o estado da sessão está em um contexto ou estado React compartilhado.
       alert("Login realizado com sucesso!");
       navigate("/");
       return;
@@ -112,6 +113,7 @@ function Login() {
                 <div className="text-center mt-3">
                   <p>Não possui uma conta?</p>
 
+                  {/* COMENTÁRIO: Um botão dentro de um Link cria elementos interativos aninhados e semântica inválida, normalmente se usa só button ou só Link. */}
                   <Link to="/cadastro">
                     <button
                       type="button"

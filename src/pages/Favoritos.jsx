@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 function Favoritos() {
   const [favoritos, setFavoritos] = useState([]);
 
+  // Normalmente não é bom usar um setState, nesse caso setFavoritos, dentro de um useEffect, acho que
+  // você só precisa usar:
+  //    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  // assim voce não precisa de useState nem useEffect e é melhor para React e o performance do site.
+  // Pode ler mas disso aqui: https://pt-br.react.dev/learn/you-might-not-need-an-effect
   useEffect(() => {
+    // COMENTÁRIO: Esta chave global permite que as contas leiam e sobrescrevam as listas umas das outras. Normalmente isso no acontece com uma base de dados, então isso aqui está bem.
     const lista =
       JSON.parse(localStorage.getItem("favoritos")) || [];
 

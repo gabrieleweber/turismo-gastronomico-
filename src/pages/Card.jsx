@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 function Card({ restaurante }) {
   const [favorito, setFavorito] = useState(false);
 
+  // Mesmo comentario que no arquivo de Favoritos.jsx. Voce pode obter 'favoritos' e 'existe' diretamente
   useEffect(() => {
+    // COMENTÁRIO: JSON.parse pode lançar um erro, então normalmente se usa try/catch e as vezes se precisa veificar se é array mesmo.
     const favoritos =
       JSON.parse(localStorage.getItem("favoritos")) || [];
 

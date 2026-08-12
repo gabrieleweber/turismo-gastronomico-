@@ -7,6 +7,9 @@ function Home() {
   const [categoria, setCategoria] = useState("Todos");
   const [paginaAtual, setPaginaAtual] = useState(1);
 
+  // Normalmente as constantes e alguns valores que não mudam devem estar fora dos componentes.
+  // Isso permite que não sejam criados de novo em cada render e liveram memoria. Então é normal ter um arquivo de
+  // constats.js ou constantes.js pra ter os valores ou colocar eles fora do componente no mesmo arquivo.
   const itensPorPagina = 6;
 
   const categorias = [
@@ -14,6 +17,10 @@ function Home() {
     ...new Set(restaurantes.map((item) => item.categoria)),
   ];
 
+  // Muitas vezes pra os calculos complexos ou varias funciones se usa um custom hook, que é um arquivo que salva todas
+  //  as mudanzas necessarias para um componente ou um objetivo comum. https://pt-br.react.dev/learn/reusing-logic-with-custom-hooks
+  // Além disso, as vezes se usa useMemo ou alguns hooks de React que salvam os calculos e só repitem os calculos quando é necessario.
+  // Mas isso já não é necessario em algumas versões novas de React pelo seu novo compilador. https://pt-br.react.dev/reference/react/useMemo
   const resultados = restaurantes.filter((item) => {
     const nome = item.nome.toLowerCase().includes(pesquisa.toLowerCase());
 
